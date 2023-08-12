@@ -25,7 +25,7 @@ class UserServiceImpl(
   val log: Logger = Logger.getLogger("user_service")
 
   override fun save(user: User): Mono<User> {
-    return existsByUsername(user.username!!)
+    return existsByUsername(user)
       .flatMap { exists ->
         if (exists) {
           Mono.error(IllegalArgumentException("Username already exists"))
@@ -82,13 +82,13 @@ class UserServiceImpl(
   }
 
   override fun deleteOne(userId: UUID): Mono<Any> {
-    return existsByUsername(userId.toString())
+    return repository.existsById(userId)
       .switchIfEmpty(Mono.error(ResourceNotFoundException(userId.toString())))
       .flatMap { repository.deleteById(userId) }
   }
 
-  private fun existsByUsername(userId: String): Mono<Boolean> {
-    val query = Query(Criteria.where("username").`is`("@$userId"))
+  private fun existsByUsername(user: User): Mono<Boolean> {
+    val query = Query(Criteria.where("username").`is`("@${user.username}"))
     return reactiveMongoTemplate.exists(query, User::class.java)
   }
 }
