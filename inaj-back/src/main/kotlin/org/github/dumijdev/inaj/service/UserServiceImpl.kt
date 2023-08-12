@@ -83,8 +83,10 @@ class UserServiceImpl(
 
   override fun deleteOne(userId: UUID): Mono<Any> {
     return repository.existsById(userId)
-      .switchIfEmpty(Mono.error(ResourceNotFoundException(userId.toString())))
-      .flatMap { repository.deleteById(userId) }
+      .flatMap {
+        if (!it) Mono.error(ResourceNotFoundException(userId.toString()))
+        else repository.deleteById(userId)
+      }
   }
 
   private fun existsByUsername(user: User): Mono<Boolean> {
