@@ -1,4 +1,3 @@
-import { Link, useLocation } from "react-router-dom";
 import { Aside } from "./styles";
 import { Home, Person, Description, Email, BarChart } from "@mui/icons-material";
 import React from "react";
@@ -9,7 +8,7 @@ export default function NavSideBar() {
     { to: "/app", label: "Dashboard", icon: <Home /> },
     { to: "/app/profile", label: "Meu perfil", icon: <Person  /> },
     { to: "/app/docs", label: "Meus Documentos", icon: <Description /> },
-    { to: "/app/sends", label: "Automação", icon: <Email /> },
+    { to: "/app/sends", label: "Agendar emails", icon: <Email /> },
     { to: "/app/regs", label: "Relatórios", icon: <BarChart /> },
   ];
 

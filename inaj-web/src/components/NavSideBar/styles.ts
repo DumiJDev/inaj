@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Aside = styled.aside`
   background: #5c33f6;
   max-width: 300px;
-  min-height: 100vh;
+  min-height: 100%;
 
   a {
     color: #fff;
