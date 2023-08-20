@@ -61,7 +61,7 @@ export default function Doc() {
       </div>
       <div style={{ display: "flex", justifyContent: "space-evenly", width: "100%" }}>
         <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-          <IconButton disabled={pageNumber === 1} onClick={() => setPageNumber(prev => prev - 1)}>
+          <IconButton disabled={pageNumber < 2 } onClick={() => setPageNumber(prev => prev - 1)}>
             <SkipPrevious />
           </IconButton>
           <IconButton disabled={pageNumber === numPages} onClick={() => setPageNumber(prev => prev + 1)}>
