@@ -1,6 +1,6 @@
 [build]
-  publish = "inaj-web/build" # Caminho para a pasta de build do seu projeto React
-  command = "npm run build"  # Comando para construir seu projeto
+  publish = "build" # Caminho para a pasta de build do seu projeto React
+  command = "yarn run build"  # Comando para construir seu projeto
 
 [dev]
   framework = "create-react-app"
