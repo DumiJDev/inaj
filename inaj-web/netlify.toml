@@ -1,0 +1,11 @@
+[build]
+  publish = "inaj-web/build" # Caminho para a pasta de build do seu projeto React
+  command = "npm run build"  # Comando para construir seu projeto
+
+[dev]
+  framework = "create-react-app"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
