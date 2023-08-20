@@ -44,13 +44,13 @@ const axios = {
 };
 
 export default function Dashboard() {
-  const [sends, setSends] = React.useState<Send[]>([]);
+  //const [sends, setSends] = React.useState<Send[]>([]);
   const [sendsOk, setSendsOk] = React.useState<Send[]>([]);
   const [sendsFailed, setSendsFailed] = React.useState<Send[]>([]);
 
   React.useEffect(() => {
     axios.get("").then((data) => {
-      setSends(data);
+      //setSends(data); 
       setSendsFailed([data[0]]);
       setSendsOk([data[1]]);
     });
@@ -104,8 +104,8 @@ export default function Dashboard() {
             datasets: [
               {
                 data: [
-                  sendsFailed.length + 1000,
-                  sendsOk.length + 444,
+                  sendsFailed.length,
+                  sendsOk.length,
                 ].reverse(),
                 backgroundColor: ["#c33434", "#2fae3a"].reverse(),
                 hoverBackgroundColor: ["#ff0000", "#00ff15"].reverse(),
