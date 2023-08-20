@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
-import { Document, Page } from "react-pdf";
 import React from "react";
-import { pdfjs } from "react-pdf";
+import { pdfjs, Document, Page } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
 import pdf from "../Dashboard/file.pdf";
+import { IconButton, CircularProgress } from "@mui/material";
+import { SkipNext, SkipPrevious } from "@mui/icons-material";
 
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
@@ -32,17 +33,45 @@ export default function Doc() {
   }
 
   return (
-    <main>
-      <Document
-        options={options}
-        file={pdf}
-        onLoadSuccess={onDocumentLoadSuccess}
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flex: 1,
+      }}
+    >
+      <div
+        style={{
+          width: "80%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
+        <Document
+          options={options}
+          file={pdf}
+          loading={<CircularProgress />}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          <Page height={600} pageNumber={pageNumber} />
+        </Document>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-evenly", width: "100%" }}>
+        <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
+          <IconButton disabled={pageNumber === 1} onClick={() => setPageNumber(prev => prev - 1)}>
+            <SkipPrevious />
+          </IconButton>
+          <IconButton disabled={pageNumber === numPages} onClick={() => setPageNumber(prev => prev + 1)}>
+            <SkipNext />
+          </IconButton>
+        </div>
+        <p style={{ textAlign: "end" }}>
+          Page {pageNumber} of {numPages}
+        </p>
+      </div>
     </main>
   );
 }
