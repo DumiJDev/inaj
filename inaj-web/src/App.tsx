@@ -11,11 +11,19 @@ import Docs from "./pages/Docs";
 import Emails from "./pages/Emails";
 import Regs from "./pages/Regs";
 import { AppBar, IconButton } from "@mui/material";
+import Doc from "./pages/Doc";
 
 function App() {
   return (
     <Router>
-      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", paddingTop: "44.666667px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+          paddingTop: "44.666667px",
+        }}
+      >
         <AppBar sx={{ background: "#5c33f6", boxShadow: "none" }}>
           <IconButton>Oi</IconButton>
         </AppBar>
@@ -23,8 +31,9 @@ function App() {
           style={{
             display: "flex",
             flexDirection: "row",
+            flex: "1",
             position: "relative",
-            minHeight: "calc(100vh - 44.666667px)"
+            minHeight: "calc(100vh - 44.666667px)",
           }}
         >
           <NavSideBar />
@@ -34,6 +43,7 @@ function App() {
               <Route path="" element={<Dashboard />} />
               <Route path="profile" element={<Profile />} />
               <Route path="docs" element={<Docs />} />
+              <Route path="docs/:docId" element={<Doc />} />
               <Route path="sends" element={<Emails />} />
               <Route path="regs" element={<Regs />} />
             </Route>

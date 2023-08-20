@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
 export const SidebarLink = ({
@@ -14,20 +15,37 @@ export const SidebarLink = ({
   const location = useLocation();
 
   return (
-    <li
-      style={{
-        background: location.pathname === to ? "#fff" : "transparent",
-      }}
-    >
-      <Link
+      showLabel ? <li
         style={{
-          color: location.pathname === to ? "#5c33f6" : "#fff",
+          background: location.pathname === to ? "#fff" : "transparent",
         }}
-        to={to}
       >
-        {icon}
-        {showLabel && <span style={{ marginLeft: "10px" }}>{label}</span>}
-      </Link>
-    </li>
+        <Link
+          style={{
+            color: location.pathname === to ? "#5c33f6" : "#fff",
+          }}
+          to={to}
+        >
+          {icon}
+          {showLabel && <span style={{ marginLeft: "10px" }}>{label}</span>}
+        </Link>
+      </li> : 
+    <Tooltip title={label}>
+      <li
+        style={{
+          background: location.pathname === to ? "#fff" : "transparent",
+        }}
+      >
+        <Link
+          style={{
+            color: location.pathname === to ? "#5c33f6" : "#fff",
+          }}
+          to={to}
+        >
+          {icon}
+          {showLabel && <span style={{ marginLeft: "10px" }}>{label}</span>}
+        </Link>
+      </li>
+    </Tooltip>
   );
 };
